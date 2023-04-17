@@ -1,0 +1,11 @@
+{% load static %}
+
+
+{% comment %} send arena {% endcomment %}
+      <form  method="POST" action="{% url 'send' %}"  class=" ">
+        {% csrf_token %} 
+            <input type="hidden" name="forum.id" value="{{forum.id}}" />
+            <textarea cols="30" rows="5" name="message" id="message" width="100px"></textarea>
+            <input type="submit"  value="send">
+        </form>
+      

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} 
+Courses 
+{% endblock title %}
+
+{% block content %}
+
+<nav aria-label="breadcrumb">
+  
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="Edit your profile">Categories</li>
+    <li class="breadcrumb-item"><a href="{% url 'courses' %}">All Courses</a></li>
+  </ol>
+</nav>
+<!-- categories section -->
+<div class="container-fluid text-center p-3 bg-dark">
+  <div class="container-fluid bg-secondary"> 
+    <div class="container-fluid mt-4 mb-3 text-light row">  
+      {% if categorys %}
+        {% for item in categorys %}
+          <div class="col-12 col-sm-6 col-md-6 col-lg-4" >
+            <div class="col mb-4 bg-dark ">
+              <div class="card">
+                <img height="300" src="{{item.image.url}}" class="card-img-top" alt="...">
+                <div class="card-body bg-info">
+                  <h5 class="card-title text-warning">{{item.title}}</h5>
+                  <td><a href="{% url 'tech' item.id %}"><button class="btn btn-primary bi-bookmark-check"> View </button></a> </td>
+                  <p class="card-text">{{item.description}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}          
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock content %}
+
+
+
+

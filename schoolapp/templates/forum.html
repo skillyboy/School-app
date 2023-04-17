@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+   Forum
+{% endblock title %}
+
+{% block content %}
+
+Welcome to {{forum.name}} community
+<li class="breadcrumb-item active" aria-current="Edit your profile">{{forum.name}}</li>       
+<a class="btn btn-primary" href="{% url 'messenger' forum.id %}"><i class="bi bi-chat-right-text"></i> {{forum.name}} Group chat  </a>
+  <br>     
+<br>
+
+
+        {% comment %} <form  method="POST" action="{% url 'messenger' forum.id%}" >
+          {%csrf_token%}
+            <input type="hidden" value="{{forum.id}}">
+            <button type="submit" class="btn btn-secondary"> <i class="bi bi-bookmark-check"> </i>join room </button>  
+        </form>    {% endcomment %}
+{% endblock content %}
+
+
+

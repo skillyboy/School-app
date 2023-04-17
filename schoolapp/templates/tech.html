@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Book Room
+{% endblock title %}
+
+
+{% block content %}
+<!-- categories section -->
+<div class="container-fluid text-center p-3 bg-dark">
+  <div class="container-fluid bg-secondary"> 
+    <div class="container-fluid mt-4 mb-3 text-light">  
+      <table class="table bg-warning">
+        <thead class="bg-dark text-light">
+          <tr>
+            <th scope="col">Course</th>
+            <th scope="col">Start date</th>
+            <th scope="col">End date</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>         
+        <tbody class="text-light bg-secondary">
+          {% if tech %}
+            {% for item in tech %}
+            <tr>
+                <th scope="row">{{item.title}}</th>
+                <td>{{item.start}}</td>  
+                <td>{{item.end}}</td>         
+                <td>{{item.fee}} </td> 
+                <td><a href="{% url 'course' item.id %}"><button class="btn btn-primary bi-bookmark-check"> View </button></a> </td>
+            </tr>
+            {% endfor %}
+          {% endif %}
+        </tbody>     
+      </table>            
+    </div>
+  </div>
+</div>
+{% endblock content %}

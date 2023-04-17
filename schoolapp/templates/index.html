@@ -1,0 +1,206 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+
+<div class="container-fluid bg-dark "> 
+   <!-- {% comment %}FAKE NAV{% endcomment %} -->
+   
+  <div class="container-fluid">   
+    {% if user.is_authenticated %}
+      <ul class="navdak list-inline bg-dark p-3">
+        <li class="list-inline-item">
+          <a href="{% url 'dashboard' %}"> <h5 class="text-warning "><i class="bi bi-bricks"></i> <strong>My Dashboard</strong> </h5> </a>
+        </li>
+        <li class="list-inline-item ml-3">
+          <a href="{% url 'wishlist' %}"> <h5 class="text-warning"><strong>Wishlist </strong><i class="bi bi-cart4"></i></h5> </a>
+        </li>
+
+        <li class="list-inline-item mr-auto">
+          <div class="btn-group bg-secondary ">
+            <button type="button" class="btn dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Account settings <i class="bi bi-gear"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a class="dropdown-item"  href="{%url 'password' %}">Change password</a>
+              <a class="dropdown-item" href="{% url 'logout' %}">Sign out</a>
+            </div> 
+          </div>
+        </li>
+
+        <div id="navDemo" class="">
+          <a href="#about" class="">About</a>
+          <a href="#shop" class="">Shop</a>
+          <a href="#events" class="">Events</a>
+          <a href="#contact" class="">Contact</a>
+        </div>
+      </ul>
+      
+
+    {% else %}           
+      <div class="p-4 mr-auto text-white">       
+        Don't have an account ?
+        <a href="{% url 'signupform' %}" class="btn btn-danger ml-3"> Sign up</a> 
+        <div id="navDemo" class="">
+          <a href="#about" class="">About</a>
+          <a href="#events" class="">Events</a>
+          <a href="#contact" class="">Contact</a>
+        </div>      
+      </div>  
+    {% endif %}
+  </div> 
+  
+      <!-- {% comment %} FIRST ROW {% endcomment %} -->
+  <div class="hero row ">
+    <!-- {% comment %} COONECTING THE WORLD  {% endcomment %} -->
+       
+    <div class=" hero-text col-12 col-sm-12 col-md-12 col-lg-6">
+      <h1 class="hero-title ">CONNECTING YOU TO THE WORLD OF SKILLS</h1>
+    </div>
+          <!-- {% comment %}CARD ON RIGHT WORLD {% endcomment %} -->
+    <div class=" grid-item col-12 col-sm-12 col-md-6 col-lg-6">
+    {% if user.is_authenticated %}
+      <div class=" grid-item row p-4 bg-info">         
+        <div class="card-body col-6 col-sm-5 col-md-12 col-lg-5 bg-secondary mb-3 m-2 ml-2">
+          <h5 class="card-title text-primary">Special title treatment</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="{% url 'courses'%}" class="btn btn-primary nav-link disabled">All codings</a>
+        </div>
+        <div class="card-body col-6 col-sm-5 col-md-12 col-lg-5 bg-secondary m-2 mb-3" >
+            <h5 class="card-title text-primary">Special title treatment</h5>
+            <p class="card-text ">With supporting text below as a natural lead-in to additional content.</p>
+            {% comment %} <a href="{% url 'categorys'%}" class="btn btn-warning nav-link disabled">Computer coureses</a> {% endcomment %}
+
+        </div>
+      </div>
+
+      {% else %}
+        <form class=""  method="POST" action="{% url 'login' %}">
+        {%csrf_token%}                 
+          <div class="container text-light p-5" >  
+            <p class="card-text"> <b>LOGIN</b></p>          
+            <div class="form-group" >
+              <label for="exampleInputEmail1">Username</label>
+              <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="textHelp">
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" class="form-control" name='password' id="exampleInputPassword1" required>
+            </div>          
+            <button type="submit" class="btn btn-primary">Login</button> 
+            <br>
+            <br>
+            <br>
+            <br>
+            {% comment %} <div class="mr-auto">       
+            Don't have an account?  
+            <a href="{% url 'signupform' %}" class="btn btn-danger ">Sign up</a> 
+            </div>      {% endcomment %}
+          </div> 
+        </form>
+      {% endif %} 
+    </div> 
+  </div>
+</div>
+
+{% block banner %}  {% include "carousel.html" %} {% endblock banner %}
+
+{% comment %} ANOTHER WORLD {% endcomment %}
+<div class=" bg-dark p-3  mb-1 ">
+
+  <!-- packs and preset    -->      
+  <div id="container-fuid packs and preset"> 
+    <div class="container text-center text-warning bg-dark p-2">
+      <h3> <strong><i><u>Available Courses</u> </i></strong></h3> 
+    </div>           
+      <!-- Packs and preset note   -->
+    <div class="row p-2">
+    {% if courses %}
+    {% for item in courses %}
+      <div class="card p-2 mb-4 col-12 col-sm-6 col-md-4 col-lg-3">
+       <!-- <img src="{{item.image.url}}" class="card-img-top" alt="...">  -->
+        <div class="card-body p-2">
+          <a href="{% url 'course' item.id %}"><h5 class="card-title">{{item.title}}</h5></a>
+          <p class="card-text">{{item.description}}</p>
+         <strong>{{item.available|yesno:"Available ,Not Available"}} </strong>
+         <h5 class="card-title mb-auto mt-2"><i class="bi bi-calendar3"></i> {{item.start}} to {{item.end}} </h5>
+         <h5 class="card-title"></h5>
+        </div>
+      </div>
+
+    {% endfor %}
+  {% endif %}
+</div>
+  <!-- Packs and preset DONE--> 
+
+
+
+    <!-- Packs and preset note    -->
+  {% comment %} <div class="card-columns bg-dark">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Gym</h5>
+        <p class="card-text">The café bar features a TV and a spacious terrace. Relax in an outdoor pool or enjoy a living area, a flat screen TV and a bar..</p>
+        <p class="card-text"><a href="#" class="btn btn-dark">View</a></p>
+      </div>
+    </div>
+    <div class="card p-3">
+      <blockquote class="blockquote mb-0 card-body">
+        <p> Certain units are equipped with a fridge, coffee/tea makers and glassware. .</p>
+        <footer class="blockquote-footer">
+          <small class="text-muted">
+            Someone famous in <cite title="Source Title">Source Title</cite>
+          </small>
+        </footer>
+      </blockquote>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title mt-3">Intercontinental dishes</h5>
+        <p class="card-text">  
+          Salma's Authentic Lebanese Cuisine is an a la carte restaurant specialised in Middle Eastern cuisine. The café bar features a TV and a spacious terrace. Relax in an outdoor pool or enjoy a living area, a flat screen TV and a bar.
+        </p>
+      </div>
+    </div>
+    <div class="card bg-primary text-white text-center p-3">
+      <blockquote class="blockquote mb-0">
+        <p> Certain units are equipped with a fridge, coffee/tea makers and glassware. </p>
+        <footer class="blockquote-footer text-white">
+          <small>
+            Someone famous in <cite title="Source Title">Source Title</cite>
+          </small>
+        </footer>
+      </blockquote>
+    </div>
+    <div class="card text-center ">
+      <div class="card-body">
+        <h5 class="card-title">Patronize us today</h5>
+        <p class="card-text"> Certain units are equipped with a fridge, coffee/tea makers and glassware. </p>
+      </div>
+    </div>
+    <div class="card">
+    </div>
+    <div class="card p-3 text-right">
+      <blockquote class="blockquote mb-0">
+        <p> Certain units are equipped with a fridge, coffee/tea makers and glassware. .</p>
+        <footer class="blockquote-footer">
+          <small class="text-muted">
+            Someone famous in <cite title="Source Title">Source Title</cite>
+          </small>
+        </footer>
+      </blockquote>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Hotel</h5>
+        <p class="card-text">The café bar features a TV and a spacious terrace. Relax in an outdoor pool or enjoy a living area, a flat screen TV and a bar..</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+  </div> {% endcomment %}
+</div>
+<!-- {% comment %} END OF SECOND WORLD {% endcomment %} -->
+{% endblock content %}

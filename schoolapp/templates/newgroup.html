@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+   Create new group
+{% endblock title %}
+
+{% block content %}
+
+
+  <body>  
+    <div class="display">
+      <div class="container darker bg-info">
+        OPEN NEW ROOM BELOW
+        <form  method="POST" action="{% url 'creator' %}" >
+            {% csrf_token %}          
+          <div class="form-group" >
+            <input type="text" name="room_id" width="100px"/>
+            <button type="submit" class="btn btn-secondary"> <i class="bi bi-bookmark-check"> </i>Create a room</button>  
+          </div>
+        </form>
+      </div>
+    </div> 
+  </body>
+
+
+ 
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %} 
+Courses 
+{% endblock title %}
+
+{% block content %}
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="Edit your profile">wishlist</li>
+    <li class=" ml-auto">
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" value='search' type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </li> 
+  </ol>
+</nav>
+<!-- categories section -->
+<div class="container text-center p-3 bg-dark">
+  <div class="container-fluid bg-secondary"> 
+    <div class="container-fluid mt-4 mb-3 text-light">  
+      <table class="table bg-warning">
+        <thead class="bg-dark text-light">
+          <tr>
+            <th scope="col">Course</th>
+            <th scope="col">Start date</th>
+            <th scope="col">End date</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>          
+        <tbody class="text-light bg-secondary">
+          {% if wishlist %}
+            {% for item in wishlist %}
+            <tr>
+              <th scope="row">{{item.thecontent}}</th>
+              <td>{{item.thecontent.start}}</td>  
+              <td>{{item.thecontent.end}}</td>         
+              <td> #{{item.thecontent.fee}} </td> 
+              <td>
+                <form method="POST" action="{% url 'deleteitem' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="skill" value="{{item.id}}">
+                    <button type="submit" class="btn btn-primary">&times;</button>
+                </form>
+            </td>
+            </tr>
+            {% endfor %}
+          {% endif %}
+          <tr>
+            <td></td>
+            <td></td>
+            <td>Total:</td>
+            <td>#{{total|floatformat:2|intcomma}}</td>
+            <td></td>
+        </tr>
+        </tbody>    
+      </table>       
+      <td><a href="{% url 'checkout' %}" class="btn btn-dark">  <i class="bi bi-forward-fill"></i>  Proceed</a> </td>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+{% endblock content %}
+
+
+
+

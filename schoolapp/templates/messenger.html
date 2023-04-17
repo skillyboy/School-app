@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  messenger
+{% endblock title %}
+
+{% block content %}
+
+<div class="container bg-success mb-3 text-center" >
+  
+    {% comment %} header {% endcomment %}
+  <p class="card-text">User : {{user}} {{user.username}}  </p>
+  <p class="card-text">Sending text to {{forum}} Channel</p>
+
+    {% comment %} chats {% endcomment %}
+  {% if chatboard %}
+    {% for item in chatboard %}
+    <div class="card border-success mb-3 mt-2 mx-auto" style="max-width: 18rem;">
+      <div class="card-header text-info">{{item.sender}} {{item.sent.time}} </div>
+      <div class="card-body text-success">
+        <a href="#"><button class="btn btn-primary">
+        <p class="card-text">{{item.value}}</p>
+      </div>
+    </div>
+    {% endfor %}
+  {% endif %}
+
+      <!-- {% comment %} send arena {% endcomment %}
+  <form  method="POST" action="{% url 'send' %}"  class=" ">
+  {% csrf_token %} 
+      <input type="hidden" name="forum.id" value="{{forum.id}}" />
+      <textarea cols="30" rows="5" name="message" id="message" width="100px"></textarea>
+      <input type="submit"  value="send">
+  </form> -->
+
+  {% block banner %}  {% include "send.html" %} {% endblock banner %}
+
+
+</div>
+
+{% endblock content %}
+

@@ -1,0 +1,45 @@
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.index, name='index'),
+    path('signup/', views.signupform, name='signupform'),
+    path('login/', views.loginfunc, name='login'),
+    path('logout/', views.logoutfunc, name='logout'),
+    path('password', views.password, name='password'),
+    path('resume/', views.resume, name='resume'),
+    path('mycourses/', views.mycourses, name='mycourses'),
+    path('dashboard/', views.dashboard, name='dashboard'),
+    path('uploaddp/', views.uploaddp, name='uploaddp'),
+    path('profile/', views.profile, name='profile'),
+    path('new/', views.new, name='new'),
+
+    path('category/<int:id>/', views.category, name='category'),
+    path('courses/', views.courses, name='courses'),
+    path('addtocart/', views.addtowish, name='addtocart'),
+    path('course/<int:id>/', views.course, name='course'),
+    path('course/', views.course, name='course'),
+    # path('messages/', views.messages, name='messages'),
+    path('wishlist/', views.wishlist, name='wishlist'),
+    path('deleteitem/', views.deleteitem, name='deleteitem'), 
+    path('checkout/', views.checkout, name='checkout'),
+    path('pay/', views.pay, name='pay'),
+    path('completed/', views.completed, name='completed'),
+    path('content/<int:id>/', views.content, name='content'),
+
+    path('music/', views.music, name='music'),
+    path('socials/', views.socials, name='socials'),
+   
+    path('skills/', views.skills, name='skills'),
+    path('tech/<int:id>/', views.tech, name='tech'),
+    # path('techs/', views.techs, name='techs'),
+    path('categories/', views.categorys, name='categorys'),
+    path('search/', views.search, name='search'),
+    path('forum/<int:id>/', views.forum, name='forum'),
+    path('groups/', views.groups, name='groups'),
+    # path("send/messenger/<int:messenger_id>", views.messenger, name="messenger"),
+    path('messenger/<int:id>', views.messenger, name='messenger'),
+    path('newgroup/', views.newgroup, name='newgroup'),
+    path('creator/', views.creator, name='creator'),
+    path('send/', views.send, name='send'),  
+]

@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+   Profile
+{% endblock title %}
+
+{% block content %}
+<head>
+  <title>W3.CSS Template</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+  html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+  </style>
+</head>
+
+<div class="card-header">
+  <ul class="nav nav-tabs card-header-tabs">
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'dashboard' %}">Profile</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'mycourses' %}">My Learning</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" href="#">Resume</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled" href="#}" tabindex="-1" aria-disabled="true">Paid Tutorials</a>
+    </li>
+  </ul>
+</div>
+
+    <!-- BOOKING -->
+
+<div class="container-fluid card text-center mt-5 p-3 bookings bg-dark">
+  <div class="card-header"> ACADEMICS/ PERSONAL PROJECTS</div>
+
+ 
+    <!-- ABOUT AND BOOKINGS ENDS  -->
+
+
+
+
+      <body class="w3-light-grey">
+      
+      <!-- Page Container -->
+      <div class="w3-content w3-margin-top" style="max-width:1400px;">
+      
+        <!-- The Grid -->
+        <div class="w3-row-padding">
+        
+
+          </div>
+      
+          <!-- Right Column -->
+          <div class="container-fluid m-2">
+          
+            <div class="w3-container w3-card w3-white w3-margin-bottom">
+              <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Work Experience</h2>
+              <div class="w3-container">
+                <h5 class="w3-opacity"><b>Front End Developer </b></h5>
+                <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jan 2022 - <span class="w3-tag w3-teal w3-round">Current</span></h6>
+                <p>Lorem ipsum dolor sit amet. Praesentium magnam consectetur vel in deserunt aspernatur est reprehenderit sunt hic. Nulla tempora soluta ea et odio, unde doloremque repellendus iure, iste.</p>
+                <hr>
+              </div>
+              <div class="w3-container">
+                <h5 class="w3-opacity"><b>Web Developer / Anchorsoft</b></h5>
+                <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Aug 2021 - Dec 2021</h6>
+                <p>Consectetur adipisicing elit. Praesentium magnam consectetur vel in deserunt aspernatur est reprehenderit sunt hic. Nulla tempora soluta ea et odio, unde doloremque repellendus iure, iste.</p>
+                <hr>
+              </div>
+
+              <div class="w3-container">
+                <h5 class="w3-opacity"><b>Graphic Designer / designsomething.com</b></h5>
+                <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jun 2010 - Mar 2012</h6>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p><br>
+              </div>
+              <div class="w3-container">
+                <h5 class="w3-opacity"><b>RESUME</b></h5>
+                <form>
+                  <div class="form-group mx-auto">
+                    <!-- <label for="exampleFormControlFile1"><h3>Upload Resume</h3> </label> -->
+                    <input type="file" class=" form-control-file container" id="exampleFormControlFile1">
+                    <a href="#" type='submit' class="btn btn-primary">Upload</a>
+                  </div>
+                </form>
+                <!-- <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jun 2010 - Mar 2012</h6> -->
+                <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p><br> -->
+              </div>
+
+            </div>
+      
+            <div class="w3-container w3-card w3-white">
+              <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Education</h2>
+              <div class="w3-container">
+                <h5 class="w3-opacity"><b>W3Schools.com</b></h5>
+                <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Forever</h6>
+                <p>Web Development! All I need to know in one place</p>
+                <hr>
+              </div>
+              <div class="w3-container">
+                <h5 class="w3-opacity"><b>London Business School</b></h5>
+                <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2013 - 2015</h6>
+                <p>Master Degree</p>
+                <hr>
+              </div>
+              <div class="w3-container">
+                <h5 class="w3-opacity"><b>School of Coding</b></h5>
+                <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2010 - 2013</h6>
+                <p>Bachelor Degree</p><br>
+              </div>
+            </div>
+      
+          <!-- End Right Column -->
+          </div>
+          
+        <!-- End Grid -->
+        </div>
+        
+        <!-- End Page Container -->
+      </div>
+
+      
+    </body>
+      {% comment %} </html> {% endcomment %}
+
+ </div>  
+   
+{% endblock  %}

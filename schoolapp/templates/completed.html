@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% load humanize %}
+
+{% load mathfilters %}
+
+{% block title %} Successful {% endblock title %}
+
+{% block content %}
+<!-- categories section -->
+
+<div class="container-fluid bg-info text-center p-3 ">
+    <!-- BOX1 -->
+    <h1> <span> Hello {{client|title}} {{user.first_name|title}} {{user.last_name|title}}</span></h1>
+    <i><h2>Payment successful</h2></i> 
+    <div class="container bg-dark text-light m-auto">
+        <h5> <u> Your Courses</u></h5>
+        {% comment %} <p>Amount paid : # {{total|floatformat:2|intcomma}}</p> {% endcomment %}
+    </div>
+    <div class="container bg-secondary"> 
+        <div class="container mt-4 mb-3 text-light">  
+            <table class="table bg-warning">
+              <thead class="bg-dark text-light">
+                  <tr>
+                      <th scope="col">Course</th>
+                      <th scope="col">Start</th>
+                      <th scope="col">End</th>
+                  </tr>
+              </thead>  
+              <tbody class="text-light bg-secondary">
+                  {% if paid %}
+                    {% for item in paid %}
+                      <tr>
+                          <th scope="row">{{item.thecontent}}</th>
+                          <td>{{item.thecontent.start}}</td></td>           
+                          <td>{{item.thecontent.end}} </td>     
+                      </tr>
+                    {% endfor %}
+                  {% endif %}
+              </tbody> 
+            </table>    
+                
+        </div>
+        <!-- BOX1 DONE-->
+      </div>
+    {% comment %} <i><h4> Enjoy your stay !</h4></i> {% endcomment %}
+    
+    <p><a href="{% url 'index' %}"> <button type="submit" class="btn btn-secondary">Home</button></a></p>  
+
+
+
+    <div class="container-fluid text-center p-3 bg-dark">
+      <div class="container-fluid bg-secondary"> 
+        <div class="container-fluid mt-4 mb-3 text-light row">  
+          {% if paid %}
+            {% for item in paid %}
+              <div class="col-12 col-sm-6 col-md-6 col-lg-4" >
+                <div class="col mb-4 bg-dark ">
+                  <div class="card">
+                    <img height="300" src="{{item.image.url}}" class="card-img-top" alt="...">
+                    <div class="card-body bg-info">
+                      <h5 class="card-title text-warning">{{item.thecontent.title|title}}</h5>
+                      <h5 class="card-title text-warning">{{item.thecontent.start}}</h5>
+                      <h5 class="card-title text-warning">{{item.thecontent.end}}</h5>
+                      <td><a href="{% url 'tech' item.id %}"><button class="btn btn-primary bi-bookmark-check"> View </button></a> </td>
+                      <p class="card-text">{{item.thecontent.description}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          {% endif %}          
+        </div>
+      </div>
+    </div>
+    
+
+
+
+
+
+  </div>
+ <!-- end of child of container  -->
+{% endblock content %}
+
+<!-- Business class ROOMS DONE  --> 
+
+
+

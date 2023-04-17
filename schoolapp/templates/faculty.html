@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Faculty
+{% endblock title %}
+
+
+{% block content %}
+<!-- categories section -->
+<div class="container-fluid bg-dark text-center p-2 ">
+    <!-- BOX1 -->
+    <i><h2>Python</h2></i> 
+    <div class=" container bg-secondary">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 p-1 mx-auto " >
+            <div class="card text-light bg-dark ml-5 mt-1 mr-5 ">
+                {% comment %} {% if category %} {% endcomment %}
+                    {% comment %} {% for item in category %} {% endcomment %}
+                    <img height="250" src="{{room.image.url}}" class="card-img-top w-100" >
+                    <div class="card-body col-12 col-sm-12 col-md-12 col-lg-12">
+                        <h6 class="card-title"> {{item.title}}</h6>
+                        <i><h5 class="card-title"> #{{course.price|floatformat:2}}</h5></i>  
+                        <p class="card-title"> {{course.description}} </p>
+                    </div>
+                    <form  method="POST" action="{% url 'addtocart' %}" >
+                    {%csrf_token%}
+                        <input type="hidden" name="skill" value="{{course.id}}">
+                    
+                    <button type="submit" class="btn btn-secondary"> <i class="bi bi-bookmark-check"> </i>Register </button>  
+                    <div class="card-body col-5 col-sm-5 col-md-12 col-lg-5 bg-secondary m-2 mb-3" >
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="{% url 'techs'%}" class="btn btn-warning nav-link ">Computer coureses</a>
+                    </div>
+                </form>
+                    {% comment %} {% endfor %} {% endcomment %}
+                {% comment %} {% endif %} {% endcomment %}
+            </div>
+        </div>
+            <!-- BOX1 DONE-->
+    </div>
+</div>
+ <!-- end of child of container  -->
+{% endblock content %}

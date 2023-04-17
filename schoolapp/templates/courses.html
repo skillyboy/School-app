@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %} 
+coding
+{% endblock title %}
+
+{% block content %}
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+    <li class="breadcrumb-item active" ><a href="{% url 'categorys' %}">Categories</a></li>
+    <li class="breadcrumb-item" >All courses</li>
+    
+    <li class="ml-auto">
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" value='' type="search" placeholder="Search a course here" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </li> 
+  </ol>
+</nav>
+<!-- categories section -->
+<div class="container-fluid text-center p-3 bg-dark">
+  <div class="container-fluid bg-secondary"> 
+    <div class="container-fluid mt-4 mb-3 text-light">  
+      <table class="table bg-warning">
+        <thead class="bg-dark text-light">
+          <tr>
+            <th scope="col">Course</th>
+            <th scope="col">Fee</th>
+            <th scope="col">Start date</th>
+            <th scope="col">End date</th>
+            <th scope="col">Status</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>         
+        <tbody class="text-light bg-secondary">
+          {% if courses %}
+            {% for item in courses %}
+          <tr>
+              <th scope="row">{{item.title}}</th>
+              <td>{{item.fee}} </td> 
+              <td> {{item.start}}</td>  
+              <td>{{item.end}}</td>         
+              <td>{{item.available|yesno:"Available,Not Available"}}</td>
+              <td><a href="{% url 'course' item.id %}"><button class="btn btn-primary"> <i class="bi bi-bookmark-check"> </i>View </button></a> </td>
+          </tr>
+            {% endfor %}
+          {% endif %}
+        </tbody>     
+      </table>            
+    </div>
+  </div>
+</div>
+
+
+{% endblock content %}
+
+
+
+

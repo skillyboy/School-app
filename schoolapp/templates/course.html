@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Book Room
+{% endblock title %}
+
+
+{% block content %}
+<!-- categories section -->
+<div class="container-fluid bg-dark text-center p-2 ">
+    <!-- BOX1 -->
+    
+    <div class=" container bg-secondary">
+        <i><h2>{{course.title|title}}</h2></i> 
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 p-1 mx-auto " >
+            <div class="card text-light bg-info ml-5 mt-1 mr-5 ">
+                <img height="250" src="{{course.image.url}}" class="card-img-top w-100" >
+                <div class="card-body col-12 col-sm-12 col-md-12 col-lg-12">
+                    <h6 class="card-title">{{course.title}}</h6>
+                     <i><h5 class="card-title"> #{{course.fee|floatformat:2}}</h5></i>  
+                    <p class="card-title"> {{course.description}} </p>
+                </div>
+                <form  method="POST" action="{% url 'addtocart' %}" >
+                {%csrf_token%}
+                    <input type="hidden" name="skill" value="{{course.id}}">
+                    
+                    <button type="submit" class="btn btn-secondary"> <i class="bi bi-bookmark-check"> </i>Add to wishlist</button>  
+                </form>
+            </div>
+        </div>
+            <!-- BOX1 DONE-->
+            
+    </div>
+</div>
+ <!-- end of child of container  -->
+{% endblock content %}
